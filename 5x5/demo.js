@@ -1,5 +1,5 @@
 // Image API
-var unsplashAPI = 'https://source.unsplash.com/150x150/?';
+var unsplashAPI = 'https://source.unsplash.com/120x150/?';
 var keywords = [
     'nature', 'water', 'city', 'night', 'fruit', 'sunset', 'music', 'town', 'lights', 'space', 'games', 'tea', 'drinks', 'coffee', 'trees', 'football', 'ocean', 'bicycle', 'taxi', 'painting', 'hospital', 'fashion', 'travel', 'people', 'health', 'culture', 'garden', 'computer', 'fire', 'camping', 'mountain', 'lake', 'meeting', 'building', 'japan', 'snow', 'bokeh'
 ]; 
@@ -13,18 +13,7 @@ var randomImageSelect = randomUniqueInt(0, keywords.length, 25);
 console.log(randomImageSelect);
 
 var randomTileToChange = randomUniqueInt(0, 24, 25);
-
- 
-//This is to bypass Unplash's cache image rather the caching the img/url from unsplash
-var randomizeImages = setInterval(() => {
-    console.log(randomImageSelect);
-    randomImageSelect = randomUniqueInt(0, keywords.length, 25);
-    randomTileToChange = randomUniqueInt(0, 24, 25); 
-    slideCounter = 0;
-}, delay * maxTiles);
-
-console.log(randomTileToChange);
-
+  
 
 // 👇 Uncomment the following to stop randomization
 // clearInterval(randomizeTiles);
@@ -36,55 +25,60 @@ var slideShow = true;
 
 
 $(window).on("load", function () {
-    $(".tile").each(function (index) { 
+    
+    $(".tile").each(function(index){
+        // Show only maxTiles
+        if (index >= maxTiles){ $(this).hide() }
+        if (index < maxTiles){
+            // Using unsplash API involves adding keywords to the url
+            // We check if keyword index is within our [keywords] array
+            // otherwise, if index > keywords.length 
+            // we will use a 'random' keyword as fallback
+            var getImageKeyword = (keywords[randomImageSelect[index]] ? keywords[randomImageSelect[index]] : 'random');
+            $(this).append('<img>')
+                .children('img')
+                .attr('src', unsplashAPI + getImageKeyword);
+            $(this).append('<img/>');  
+        }
+    });
 
-        // Parent reference
-        let tile = this;
+    
+    // Store the next img in a hidden img tag
+    preloadImg();
+    var preloadimg_interval = setInterval(preloadImg, delay * (maxTiles - 1));
 
-        // Only show 25 tiles
-        if (index >= maxTiles) {
-            $(this).hide();
-        }   
-
-        // Initial image load from unsplash using keywords
-        $(tile).children('img')
-            .attr('src', unsplashAPI + keywords[index])
-            .attr('alt', keywords[index])
-            .fadeIn('slow');  
-
-        // Preload next image / img tag
-        preloadImg(tile, index);  
-    }); 
-
-
-    // Randomize tile
-    var randomizeTiles = setInterval(() => {
-      
-        $.when($('.tile').eq(randomTileToChange[slideCounter]).children('img:nth-child(1)').fadeOut('slow'))
-            .done(function () {
-                // Remove original img tag
-                // $(this).remove();
-                console.log($(this).children('img'));
-                
-                
-                $('.tile').eq(randomTileToChange[slideCounter]).children('img:nth-child(2)').fadeIn('slow');
-
-                // Preload next image   
-                preloadImg(this, slideCounter);
-
-                // Remove unnecessary img tags (should only have two images alternating, the second img is for loading the next image)
-                $('.tile img:not([src]').remove();
+    //Randomly pick a tile, hide first img, show second image
+    console.log(randomTileToChange);
+    
+    var randomizedTiles_interval = setInterval(() => {  
+        $.when($('.tile').eq(randomTileToChange[slideCounter]).children('img:nth-child(1)').fadeOut('500'))
+            .done(function(){
+                $(this).remove();
+                $('.tile').eq(randomTileToChange[slideCounter]).children('img:nth-child(2)').fadeIn('500');
+               
+                 $('.tile').eq(randomTileToChange[slideCounter]).append('<img>');
             });
-        slideCounter++;     
-    }, delay);
+        
+        
+        console.log(randomTileToChange[slideCounter]);    
+        
+        (slideCounter < maxTiles - 1 ? slideCounter++ : slideCounter = 0); 
+    }, delay);  
+
+ 
 }); 
 
-function preloadImg(obj, index){
-    $(obj).append('<img>');
-    $(obj).children('img:nth-child(2)')
-        .attr('src', unsplashAPI + keywords[randomImageSelect[index]] + '?sig=' + keywords[randomImageSelect[index]])
-        .attr('alt', keywords[randomImageSelect[index]])
-        .hide();
+function preloadImg(){
+    randomImageSelect = randomUniqueInt(0, keywords.length, 25);
+    // console.log(randomImageSelect);
+    $(".tile").each(function (index) {
+         $('.tile').eq(randomTileToChange[slideCounter]).append('<img>');
+        //Initialize next image tag
+        var getImageKeyword = (keywords[randomImageSelect[index]] ? keywords[randomImageSelect[index]] : 'random');
+        $(this).children().eq(1)
+            .hide()
+            .attr('src', unsplashAPI + getImageKeyword);
+    });
 }
 
 
