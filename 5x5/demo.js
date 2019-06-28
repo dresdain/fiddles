@@ -4,19 +4,31 @@ var keywords = [
     'nature', 'water', 'city', 'night', 'fruit', 'sunset', 'music', 'town', 'lights', 'space', 'games', 'tea', 'drinks', 'coffee', 'trees', 'football', 'ocean', 'bicycle', 'taxi', 'painting', 'hospital', 'fashion', 'travel', 'people', 'health', 'culture', 'garden', 'computer', 'fire', 'camping', 'mountain', 'lake', 'meeting', 'building', 'japan', 'snow', 'bokeh'
 ]; 
 
+// Setup delay
+var delay = 1000; 
+var slideCounter = 0;
 // Random Tiles 
-var maxTiles = 25;
-var randomTiles = randomUniqueInt(0, keywords.length, 25);
-console.log(randomTiles);
+var maxTiles = 25; 
+var randomImageSelect = randomUniqueInt(0, keywords.length, 25);
+console.log(randomImageSelect);
 
-// Dynamically update/randomize dataset
-var randomizeTiles = setInterval(() => {
-    console.log(randomTiles);
-    randomTiles = randomUniqueInt(0, keywords.length, 25);
-}, 10000);
+var randomTileToChange = randomUniqueInt(0, 24, 25);
+
+ 
+//This is to bypass Unplash's cache image rather the caching the img/url from unsplash
+var randomizeImages = setInterval(() => {
+    console.log(randomImageSelect);
+    randomImageSelect = randomUniqueInt(0, keywords.length, 25);
+    randomTileToChange = randomUniqueInt(0, 24, 25); 
+    slideCounter = 0;
+}, delay * maxTiles);
+
+console.log(randomTileToChange);
+
 
 // 👇 Uncomment the following to stop randomization
 // clearInterval(randomizeTiles);
+// clearInterval(randomizeImages);
 
 // 👇 Set the following to bool false, to disable slideshow
 var slideShow = true;
@@ -41,38 +53,40 @@ $(window).on("load", function () {
             .fadeIn('slow');  
 
         // Preload next image / img tag
-        $(tile).append('<img>');
-        $(tile).children('img:nth-child(2)')
-            .attr('src', unsplashAPI + keywords[randomTiles[index]])
-            .attr('alt', keywords[randomTiles[index]])
-            .hide(); 
-        
-        //Every 10 seconds, change tile image 
-        setInterval(() => {     
-            //Check when first image has faded out | promise polyfill is needed for IE
-            if(slideShow === true){
-                $.when($(tile).children('img:nth-child(1)').fadeOut('slow'))
-                    .done(function () {
-                        // Remove original img tag
-                        $(this).remove();
-                        $(tile).children('img').fadeIn('slow');
-
-                        // Preload next image   
-                        $(tile).append('<img>');
-                        $(tile).children('img:nth-child(2)')
-                            .attr('src', unsplashAPI + keywords[randomTiles[index]])
-                            .attr('alt', keywords[randomTiles[index]])
-                            .hide();
-
-                        // Remove unnecessary img tags (should only have two images alternating, the second img is for loading the next image)
-                        $('.tile img:not([src]').remove();
-                    });
-            }
-        }, 10000); 
+        preloadImg(tile, index);  
     }); 
+
+
+    // Randomize tile
+    var randomizeTiles = setInterval(() => {
+      
+        $.when($('.tile').eq(randomTileToChange[slideCounter]).children('img:nth-child(1)').fadeOut('slow'))
+            .done(function () {
+                // Remove original img tag
+                // $(this).remove();
+                console.log($(this).children('img'));
+                
+                
+                $('.tile').eq(randomTileToChange[slideCounter]).children('img:nth-child(2)').fadeIn('slow');
+
+                // Preload next image   
+                preloadImg(this, slideCounter);
+
+                // Remove unnecessary img tags (should only have two images alternating, the second img is for loading the next image)
+                $('.tile img:not([src]').remove();
+            });
+        slideCounter++;     
+    }, delay);
 }); 
 
- 
+function preloadImg(obj, index){
+    $(obj).append('<img>');
+    $(obj).children('img:nth-child(2)')
+        .attr('src', unsplashAPI + keywords[randomImageSelect[index]] + '?sig=' + keywords[randomImageSelect[index]])
+        .attr('alt', keywords[randomImageSelect[index]])
+        .hide();
+}
+
 
 /* Converted to ES5, original: https://stackoverflow.com/questions/52528059/javascript-generate-a-random-number-between-1-and-5-but-never-the-same-number */
 function randomUniqueInt(min, max, length){ 
