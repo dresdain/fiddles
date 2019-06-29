@@ -4,20 +4,36 @@ var keywords = [
     'nature', 'water', 'city', 'night', 'fruit', 'sunset', 'music', 'town', 'lights', 'space', 'games', 'tea', 'drinks', 'coffee', 'trees', 'football', 'ocean', 'bicycle', 'taxi', 'painting', 'hospital', 'fashion', 'travel', 'people', 'health', 'culture', 'garden', 'computer', 'fire', 'camping', 'mountain', 'lake', 'meeting', 'building', 'japan', 'snow', 'bokeh'
 ]; 
 
-var delay = 10000;  // Setup delay interval 1000ms = 1second
+//Select container and child
+var tileContainer = ".tile-container";
+var tileName = ".tile";
+
+var delay = 5;  // Set delay interval in seconds
 var maxTiles = 25; // Set maximum tiles to show and randomize
- 
+
+
+var tileArticle = tileContainer + ' > ' + tileName;
 $(window).on("load", function () {
+    //Make sure we're getting the right amount of tiles 
+    if ($(tileArticle).length < maxTiles){ 
+        for (let i = $(tileArticle).length; i <= maxTiles; i++) {
+            $(tileContainer).append('<article class="tile" />');
+        }
+    }
+
     // The following loop, populates the first set of random images, limits the number of tiles to var maxTiles
-    var randomImageSelect = getRandomUniqueInt(0, keywords.length, 25);
-    $(".tile").each(function(index){ 
+    var randomImageSelect = getRandomUniqueInt(0, keywords.length, maxTiles);
+    $(tileArticle).each(function(index){ 
         if (index >= maxTiles){ $(this).hide() }
         if (index < maxTiles){ 
+            $(this).addClass('randomize');
             //Check if a keyword exist in the keywords array, else we use the keyword 'random'
             var getImageKeyword = (keywords[randomImageSelect[index]] ? keywords[randomImageSelect[index]] : 'random');
             $(this).append('<img>')
                 .children('img')
-                .attr('src', unsplashAPI + getImageKeyword);
+                .attr('src', unsplashAPI + getImageKeyword)
+                .hide()
+                .fadeIn();
         }
     });
     // Start the cycle
@@ -30,8 +46,9 @@ function randomizeTiles() {
     var selectedRandomTile = $('.tile').eq(selectedRandomNum);
 
     //Check if delayOffset is not greater than the delay intended
-    //Fallback to no delay / 0ms if false
-    var delayOffset = (delay > delay - 1000 ? (delay - 1000) : 0);
+    //Fallback to no offsetDelay / 0ms if false aka not preloading the image
+    var convertDelay = delay * 1000;
+    var delayOffset = (convertDelay > convertDelay - 1000 ? (convertDelay - 1000) : 0);
     
     //Ready next image URL
     var nextImage = unsplashAPI + keywords[getRandomInt(0, keywords.length)];
@@ -54,16 +71,15 @@ function randomizeTiles() {
                 selectedRandomTile.children('img:nth-child(1)').fadeIn(); 
                 console.log('Changing tile #: ' + (selectedRandomNum+1));
                 // And cycle again
-                setTimeout(randomizeTiles, delay - delayOffset);
+                setTimeout(randomizeTiles, convertDelay - delayOffset);
             });
     }, delayOffset);
 }
-
-
+ 
 /* Traverses all .tiles > img in the DOM and checks for a duplicate of nextImage in their src attribute */
 function checkForDuplicate(nextImage){
     var duplicate = false;
-    $('.tile > img').map(function (index) {
+    $(tileArticle + '.randomize > img').map(function (index) {
         if (nextImage == $(this).attr('src')) {
             duplicate = true; 
         }
