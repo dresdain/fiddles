@@ -40,8 +40,8 @@ body {
 }
 
 .tile-container > article:hover {
-  -webkit-transform: translateY(-5px) scale(1.2);
-          transform: translateY(-5px) scale(1.2);
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
   z-index: 1000;
 }
 /*# sourceMappingURL=demo.css.map */
