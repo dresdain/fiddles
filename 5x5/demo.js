@@ -16,7 +16,7 @@ var tileArticle = tileContainer + ' > ' + tileName;
 $(window).on("load", function () {
     //Make sure we're getting the right amount of tiles 
     if ($(tileArticle).length < maxTiles){ 
-        for (let i = $(tileArticle).length; i <= maxTiles; i++) {
+        for (let i = $(tileArticle).length; i < maxTiles; i++) {
             $(tileContainer).append('<article class="tile" />');
         }
     }
