@@ -110,6 +110,15 @@
   .second-quarter{ right: 15.5%; bottom: 20.5%;}
   .third-quarter{ left: 15.5%; bottom: 20.5%;}
   .fourth-quarter{ left: 15.5%; top: 20.5%;}
+  /*  */
+  .one-12{ right: 34%; top: 10%;}
+  .three-12{ right: 6%; top: 37%;}
+  .four-12{ right: 6%; bottom: 37%;}
+  .six-12{ right: 34%; bottom: 10%;}
+  .twelve-12{ left: 34%; top: 10%;}
+  .ten-12{ left: 6%; top: 37%;}
+  .nine-12{ left: 6%; bottom: 37%;}
+  .seven-12{ left: 34%; bottom: 10%;}
   
   /* Layout styles only, not needed for functionality */
   html {
@@ -122,15 +131,49 @@
 <section class="pie-graph">
   <h2>AIA Elite Conservative</h2>
   <small>Low to Medium Risk</small>
-  <section class="pie-chart">  
+  <section class="pie-chart">   
     <span class="pie-percent text-dark fourth-quarter">30%</span>
     <span class="pie-percent text-white four-oclock">70%</span> 
-    <object type="image/svg+xml" data="pie-1.svg" class="pie">
+    <!-- <img src="./guide.png" alt="" width="100%" style="position: absolute; top: 0px; left: 0px; z-index: 901; opacity: 0.78;"> -->
+    <object type="image/svg+xml" data="pie-1.svg" class="pie"></object>
+  </section>
+  <h1 class="pie-subtext">Illustrated Rate of Return: 5.8%</h1>
+  <div class="pie-legend">
+    <div class="pie-legend-item legend-1">Fixed Income</div>
+    <div class="pie-legend-item legend-2">Equities</div>
+  </div> 
+</section> 
+
+<br>
+<section class="pie-graph">
+  <h2>AIA Elite Balanced</h2>
+  <small>Medium to High Risk</small>
+  <section class="pie-chart">  
+    <span class="pie-percent text-white ten-12">40%</span>
+    <span class="pie-percent text-dark four-oclock">60%</span> 
+    <object type="image/svg+xml" data="pie-2.svg" class="pie"></object>
+  </section>
+  <h1 class="pie-subtext">Illustrated Rate of Return: 7.2%</h1>
+  <div class="pie-legend">
+    <div class="pie-legend-item legend-1">Fixed Income</div>
+    <div class="pie-legend-item legend-2">Equities</div>
+  </div> 
+</section> 
+
+
+<br>
+<section class="pie-graph">
+  <h2>AIA Elite Adventurous</h2>
+  <small>High Risk</small>
+  <section class="pie-chart">  
+    <span class="pie-percent text-white twelve-12">10%</span>
+    <span class="pie-percent text-dark six-12">90%</span> 
+    <object type="image/svg+xml" data="pie-3.svg" class="pie">
         
     </object>
     
   </section>
-  <h1 class="pie-subtext">Illustrated Rate of Return: 5.8%</h1>
+  <h1 class="pie-subtext">Illustrated Rate of Return: 8.0%</h1>
   <div class="pie-legend">
     <div class="pie-legend-item legend-1">Fixed Income</div>
     <div class="pie-legend-item legend-2">Equities</div>

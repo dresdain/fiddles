@@ -26,7 +26,7 @@
     }
     </style>
     <g>
-    <circle class="circle-chart__background" stroke="#d5b891" stroke-width="10" fill="transparent" cx="150" cy="150" r="15.91549430918954" />
-    <circle class="circle-chart__circle" stroke="#5e5f57" stroke-width="10" stroke-dasharray="70 30" stroke-dashoffset="25" fill="transparent" cx="150" cy="150" r="15.91549430918954"  />
+    <circle class="circle-chart__background" stroke="#5e5f57" stroke-width="10" fill="transparent" cx="150" cy="150" r="15.91549430918954" />
+    <circle class="circle-chart__circle" stroke="#d5b891" stroke-width="10" stroke-dasharray="90 10" stroke-dashoffset="25" fill="transparent" cx="150" cy="150" r="15.91549430918954"  />
     </g>
 </svg>
