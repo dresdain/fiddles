@@ -1,22 +1,16 @@
 <style>
-  .circle-chart__circle {
-    animation: circle-chart-fill 1s reverse; /* 1 */
-    animation-timing-function: ease-in-out; 
-    transform: rotate(-90deg); /* 2, 3 */
-    transform-origin: center; /* 4 */
-  }
-  
-  .circle-chart__circle--negative {
-    transform: rotate(-90deg) scale(1,-1); /* 1, 2, 3 */
-  }
+
    
   /* Pie */
 
   svg {
-     overflow: visible;
-     transform: scale(0.8);
+     overflow: visible; 
      z-index: 900;
   } 
+  .pie{
+    overflow: visible; 
+    
+  }
   .pie-graph{  
     display: flex;
     align-items: center;
@@ -94,16 +88,7 @@
     }
   }
     
-  @keyframes circle-chart-fill {
-    to { stroke-dasharray: 0 100; }
-  }
   
-  @keyframes circle-chart-appear {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
 
 
   /* percentage positioning here 👇🏻 */
@@ -131,21 +116,7 @@
     font-family: sans-serif;
     padding-right: 1em;
     padding-left: 1em; 
-  }
-  
-  .grid {
-    /* display: grid;
-    grid-column-gap: 1em;
-    grid-row-gap: 1em;
-    grid-template-columns: repeat(1, 1fr); */
-  }
-  
-  @media (min-width: 31em) {
-    .grid {
-      /* grid-template-columns: repeat(2, 1fr); */
-    }
-  }
-  
+  } 
   </style>
   
 <section class="pie-graph">
@@ -154,17 +125,15 @@
   <section class="pie-chart">  
     <span class="pie-percent text-dark fourth-quarter">30%</span>
     <span class="pie-percent text-white four-oclock">70%</span> 
-    <!-- Uncomment to use as guide 🧭-->
-      <!-- <img src="guide.png" alt="" style="position: absolute; width: 100%; height: 100%; z-index: 905; opacity: 0.1;">  -->
-    <svg class="circle-chart" viewbox="0 0 33.83098862 33.83098862" width="300" height="300" xmlns="http://www.w3.org/2000/svg">
-      <circle class="circle-chart__background" stroke="#d5b891" stroke-width="10" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
-      <circle class="circle-chart__circle" stroke="#5e5f57" stroke-width="10" stroke-dasharray="70,100" stroke-linecap="circle" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" style="padding: 100px;" />
-    </svg>
+    <object type="image/svg+xml" data="pie-1.svg" class="pie">
+        
+    </object>
+    
   </section>
   <h1 class="pie-subtext">Illustrated Rate of Return: 5.8%</h1>
   <div class="pie-legend">
     <div class="pie-legend-item legend-1">Fixed Income</div>
     <div class="pie-legend-item legend-2">Equities</div>
   </div> 
-</section>
+</section> 
   

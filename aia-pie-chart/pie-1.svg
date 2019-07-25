@@ -1,0 +1,32 @@
+<svg class="circle-chart" viewbox="0 0 300 300" width="300px" height="300px" xmlns="http://www.w3.org/2000/svg">
+    <style>
+    g{ 
+        transform-origin: center;
+        transform:scale(7.2);
+    }
+    .circle-chart__circle {
+        animation: circle-chart-fill 1s reverse; /* 1 */
+        animation-timing-function: ease-in-out; 
+        transform: rotate(-0deg); /* 2, 3 */
+        transform-origin: center; /* 4 */ 
+    }
+    
+    .circle-chart__circle--negative {
+        transform: rotate(-90deg) scale(1,-1); /* 1, 2, 3 */
+    }
+    @keyframes circle-chart-fill {
+        to { stroke-dasharray: 0 100; }
+    }
+    
+    @keyframes circle-chart-appear {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    </style>
+    <g>
+    <circle class="circle-chart__background" stroke="#d5b891" stroke-width="10" fill="transparent" cx="150" cy="150" r="15.91549430918954" />
+    <circle class="circle-chart__circle" stroke="#5e5f57" stroke-width="10" stroke-dasharray="75 25" stroke-dashoffset="25" fill="transparent" cx="150" cy="150" r="15.91549430918954"  />
+    </g>
+</svg>
