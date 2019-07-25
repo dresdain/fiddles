@@ -42,8 +42,8 @@ var images = [
 var tileContainer = ".tile-container";
 var tileName = ".tile";
 
-var delay = 10;  // Set delay interval in seconds
-var maxTiles = 25; // Set maximum tiles to show and randomize
+var delay = 2;  // Set delay interval in seconds
+var maxTiles = 15; // Set maximum tiles to show and randomize
 
 var tileArticle = tileContainer + ' > ' + tileName;
 $(window).on("load", function () {
@@ -72,7 +72,7 @@ $(window).on("load", function () {
         }
     });
     // Start the cycle
-    randomizeTiles();
+    randomizeTiles(); 
 }); 
 
 function randomizeTiles() {
