@@ -1,32 +1,217 @@
-<svg class="circle-chart" viewbox="0 0 300 300" width="300px" height="300px" xmlns="http://www.w3.org/2000/svg">
+<svg class="circle-chart" viewbox="0 0 300 300" width="500px" height="590px" xmlns="http://www.w3.org/2000/svg" >
     <style>
     g{ 
-        transform-origin: center;
-        transform:scale(7.1);
+        -webkit-transform: scale(7) translate(-115px, -110px); 
+            -ms-transform: scale(7) translate(-115px, -110px); 
+                transform: scale(7) translate(-115px, -110px);
+        -webkit-transform-origin: top left;
+            -ms-transform-origin: top left;
+                transform-origin: top left;
     }
     .circle-chart__circle {
         animation: circle-chart-fill 1s reverse; /* 1 */
-        animation-timing-function: ease-in-out; 
-        transform: rotate(-0deg); /* 2, 3 */
-        transform-origin: center; /* 4 */ 
-    }
-    
+        -webkit-animation-timing-function: ease-in-out;
+                animation-timing-function: ease-in-out; 
+        -webkit-transform: rotate(-0deg); 
+            -ms-transform: rotate(-0deg); 
+                transform: rotate(-0deg); /* 2, 3 */
+        -webkit-transform-origin: center;
+            -ms-transform-origin: center;
+                transform-origin: center; /* 4 */ 
+    } 
     .circle-chart__circle--negative {
-        transform: rotate(-90deg) scale(1,-1); /* 1, 2, 3 */
+        -webkit-transform: rotate(-90deg) scale(1,-1);
+            -ms-transform: rotate(-90deg) scale(1,-1);
+                transform: rotate(-90deg) scale(1,-1); /* 1, 2, 3 */
+    }
+    @-webkit-keyframes circle-chart-fill {
+        to { stroke-dasharray: 0 100; }
     }
     @keyframes circle-chart-fill {
         to { stroke-dasharray: 0 100; }
-    }
-    
+    } 
+    @-webkit-keyframes circle-chart-appear {
+        to {
+            opacity: 1;
+            -webkit-transform: translateY(0);
+                    transform: translateY(0);
+        }
+    } 
     @keyframes circle-chart-appear {
         to {
             opacity: 1;
-            transform: translateY(0);
+            -webkit-transform: translateY(0);
+                    transform: translateY(0);
         }
+    } 
+    .pie-percent-container{
+        x: 98;
+        y: 133;
+        width: 294px;
+        height: 294px;
+        position: relative;
+    }
+    .pie-subtext{
+        x: 0;
+        y: 0;
+        width: 500px;
+        height: 590px;
+        text-align: center;
+        position: relative;
+        color: #d5b891;
+        font-size: 23px;
+        margin-top: 450px;
+    }
+    .pie-legend-container{
+        x: 0;
+        y: 0;
+        width: 500px;
+        height: 590px;
+        padding-top: 485px;
     }
     </style>
-    <g>
-    <circle class="circle-chart__background" stroke="#d5b891" stroke-width="10" fill="transparent" cx="150" cy="150" r="15.91549430918954" />
-    <circle class="circle-chart__circle" stroke="#5e5f57" stroke-width="10" stroke-dasharray="70 30" stroke-dashoffset="25" fill="transparent" cx="150" cy="150" r="15.91549430918954"  />
+    <foreignObject width="500" height="100" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+        <style>
+            *{
+                font-family: sans-serif;
+            }
+            h2{
+                font-size: 20px;
+                text-align: center;
+                margin: 0;
+                margin-top: 50px;
+            }
+            small{
+                display: block;
+                text-align: center;
+                font-size: 13px;
+            }
+        </style>
+        <h2 xmlns="http://www.w3.org/1999/xhtml">AIA Elite Conservative</h2>
+        <small xmlns="http://www.w3.org/1999/xhtml">Low to Medium Risk</small> 
+    </foreignObject>
+    <g width="222.82" height="222.82">
+        <circle class="circle-chart__background" stroke="#d5b891" stroke-width="10" fill="transparent" cx="150" cy="150" r="15.91549430918954" />
+        <circle class="circle-chart__circle" stroke="#5e5f57" stroke-width="10" stroke-dasharray="70 30" stroke-dashoffset="25" fill="transparent" cx="150" cy="150" r="15.91549430918954"  />
     </g>
+    <foreignObject class="pie-percent-container" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" >
+        <style>
+        .pie-percent{ 
+            font-size: 14px;
+            position: absolute;
+            z-index: 1000;
+            font-size: 18px;
+            -webkit-transform-origin: center;
+                -ms-transform-origin: center;
+                    transform-origin: center;   
+            -webkit-animation: percent-anim 2s cubic-bezier(0.42, 0, 0, 0.96);   
+                    animation: percent-anim 2s cubic-bezier(0.42, 0, 0, 0.96);
+        } 
+        .text-white{
+            color: #FFF !important;
+        }
+        .text-dark{
+            color: #000;
+        }
+        /* Percentages animates last */ 
+        @-webkit-keyframes percent-anim{
+            from{
+            -webkit-transform: translateY(-10px);
+                    transform: translateY(-10px);
+            opacity: 0;
+            }
+            to{
+            -webkit-transform: translateY(0px);
+                    transform: translateY(0px);
+            opacity: 1;
+            }
+        } 
+        @keyframes percent-anim{
+            from{
+            -webkit-transform: translateY(-10px);
+                    transform: translateY(-10px);
+            opacity: 0;
+            }
+            to{
+            -webkit-transform: translateY(0px);
+                    transform: translateY(0px);
+            opacity: 1;
+            }
+        }
+        /* percentage positioning here */
+        .twelve-oclock{   left: 45%; top: 9%;}
+        .eleven-oclock{   left: 23%; top: 15%;}
+        .ten-oclock{      left: 12%; top: 28%;}
+        .nine-oclock{     left: 5%; bottom: 45%;}
+        .eight-oclock{    left: 9%; bottom: 28%;}
+        .seven-oclock{    left: 23%; bottom: 15%;}
+        /* symmetry */
+        .six-oclock{      left: 45%; bottom: 9%;}
+        .five-oclock{     right: 23%; bottom: 15%;}
+        .four-oclock{     right: 9%; bottom: 28%;}
+        .three-oclock{    right: 5%; top: 45%;}
+        .two-oclock{      right: 9%; top: 28%;}
+        .one-oclock{      right: 23%; top: 15%;}
+        /* Quarterly */
+        .first-quarter{ right: 15.5%; top: 20.5%;} 
+        .second-quarter{ right: 15.5%; bottom: 20.5%;}
+        .third-quarter{ left: 15.5%; bottom: 20.5%;}
+        .fourth-quarter{ left: 15.5%; top: 20.5%;}
+        /*  */
+        .one-12{ right: 34%; top: 10%;}
+        .three-12{ right: 6%; top: 37%;}
+        .four-12{ right: 6%; bottom: 37%;}
+        .six-12{ right: 34%; bottom: 10%;}
+        .twelve-12{ left: 34%; top: 10%;}
+        .ten-12{ left: 6%; top: 37%;}
+        .nine-12{ left: 6%; bottom: 37%;}
+        .seven-12{ left: 34%; bottom: 10%;}
+        </style> 
+        <span xmlns="http://www.w3.org/1999/xhtml" class="pie-percent text-dark fourth-quarter">30%</span>
+        <span xmlns="http://www.w3.org/1999/xhtml" class="pie-percent text-white four-oclock">70%</span> 
+    </foreignObject> 
+    <foreignObject class="pie-subtext" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" >
+        <h1 xmlns="http://www.w3.org/1999/xhtml" class="pie-subtext">Illustrated Rate of Return: 5.8%</h1>
+    </foreignObject> 
+    <foreignObject class="pie-legend-container" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+        <style>
+        .pie-legend{
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            width: 100%;
+            margin-top: 25px;
+            -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                    justify-content: center;
+        }
+        .pie-legend-item{
+            padding: 10px 10px 10px 30px;
+            position: relative;
+            vertical-align: middle;
+        }
+        .pie-legend-item:before{
+            content: '';
+            position: absolute;
+            left: 0px;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+                -ms-transform: translateY(-50%);
+                    transform: translateY(-50%);
+            height: 20px;
+            width: 20px;
+        }
+
+        .legend-1:before{
+            background-color: #5e5f57;
+        }
+        .legend-2:before{
+            background-color: #d5b891;
+        }
+        </style>
+        <div xmlns="http://www.w3.org/1999/xhtml" class="pie-legend">
+            <div class="pie-legend-item legend-1">Fixed Income</div>
+            <div class="pie-legend-item legend-2">Equities</div>
+        </div> 
+    </foreignObject> 
 </svg>
