@@ -1,0 +1,36 @@
+@media (max-width: 768px){
+	div.modal.popup-table.in{
+		> .modal-dialog{
+            & .modal-body{
+                padding: 0px;
+                & > .close{
+                    top: -15px;
+                    right: -18px;
+                    background-color: #036a38;
+                    border-radius: 50%;
+                    position: fixed;
+                    img{
+                        margin-bottom: 0px;
+                    }
+                }
+                & > .close + p:not(:empty){
+                    display: none;
+                } 
+                & > table{
+                    margin-bottom: 0px;
+                }
+                & > table > tbody > tr > td{
+                    padding: 0px;
+                } 
+                & > table table{
+                    // padding: 6px 25px;
+                }
+                & > table ~ p{
+                    padding-left: 35px;
+                }
+            }
+        }
+	}
+}
+
+// .modal-body > table > tbody > tr > td
