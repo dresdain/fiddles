@@ -1,39 +1,42 @@
 @media (max-width: 768px) {
-  div.modal.popup-table.in > .modal-dialog .modal-body {
-    padding: 0px;
+    div.modal.popup-table.in > .modal-dialog .modal-body {
+      padding: 0px;
+    }
+    div.modal.popup-table.in > .modal-dialog .modal-body > .close {
+      top: -15px;
+      right: -18px;
+      background-color: #036a38;
+      border-radius: 50%;
+      position: fixed;
+    }
+    div.modal.popup-table.in > .modal-dialog .modal-body > .close img {
+      margin-bottom: 0px;
+    }
+    div.modal.popup-table.in > .modal-dialog .modal-body > .close + p {
+      display: none;
+    }
+    div.modal.popup-table.in > .modal-dialog .modal-body p:blank{
+        display: none;
+    }
+    div.modal.popup-table.in > .modal-dialog .modal-body table {
+      margin-bottom: 0px;
+    }
+    div.modal.popup-table.in > .modal-dialog .modal-body > table {
+      margin-bottom: 15px; 
+      margin-top: -5px;
+    }
+    div.modal.popup-table.in > .modal-dialog .modal-body > table > tbody > tr > td {
+      padding: 0px;
+    }
+    div.modal.popup-table.in > .modal-dialog .modal-body table td{
+        padding: 10px 15px;
+    }
+    
+    div.modal.popup-table.in > .modal-dialog .modal-body > table ~ p {
+      padding-left: 35px;
+    }
+    div.modal.popup-table.in > .modal-dialog .modal-body > table td:blank {
+      display: none;
+    }
   }
-  div.modal.popup-table.in > .modal-dialog .modal-body > .close {
-    top: -15px;
-    right: -18px;
-    background-color: #036a38;
-    border-radius: 50%;
-    position: fixed;
-  }
-  div.modal.popup-table.in > .modal-dialog .modal-body > .close img {
-    margin-bottom: 0px;
-  }
-  div.modal.popup-table.in > .modal-dialog .modal-body > .close + p:not(:empty) {
-    display: none;
-  }
-  div.modal.popup-table.in > .modal-dialog .modal-body p:not(:empty){
-  	display: none;
-  }
-  div.modal.popup-table.in > .modal-dialog .modal-body table {
-    margin-bottom: 0px;
-  }
-  div.modal.popup-table.in > .modal-dialog .modal-body > table {
-    margin-bottom: 15px;
-  }
-  div.modal.popup-table.in > .modal-dialog .modal-body table table td{
-  	padding: 10px 15px;
-  }
-  div.modal.popup-table.in > .modal-dialog .modal-body > table > tbody > tr > td {
-    padding: 0px;
-  }
-  div.modal.popup-table.in > .modal-dialog .modal-body > table ~ p {
-    padding-left: 35px;
-  }
-  div.modal.popup-table.in > .modal-dialog .modal-body > table td:(:empty) {
-    display: none;
-  }
-}
+  
